@@ -46,6 +46,8 @@ sealed class Network(val title: String, val path: String, val chainId: BigIntege
     object ETHER1 : Network("Ether-1", "m/44'/1313114'/0'/0", 1313114)
     class CUSTOM(title: String, path: String, chainId: Int) : Network(title, path, chainId)
 
+    object ANONYMIZED_ID : Network("Ethereum", "m/1000'/60'/0'/0", 1)
+
     fun wifPrefix() =
         when (this) {
             BITCOIN -> "0x80"

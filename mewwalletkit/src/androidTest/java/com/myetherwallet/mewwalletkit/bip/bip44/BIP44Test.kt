@@ -14,6 +14,78 @@ class BIP44Test {
     private val testVectors = arrayOf(
         TestVector(
             "m",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9s21ZrQH143K3WP92kxn8S141XX9XSZQzAC6gZ686hDL5A9uA5wY7wPZKjp8LiPqETNTrt6ngLaDTgZveMxYurRM9mQ1tmNoh2AMBqakHDF",
+            "xpub661MyMwAqRbcFzTc8nVnVZwnZZMdvuHGMP7hUwVjf2kJwxV3hdFnfji3B2Xjp6jJ6Zfx7ei1BpZzTmNZvUqsmG8rdQLUD1n8UATRyEvmA5g"
+        ),
+        TestVector(
+            "m/1000'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9usAGYdEMShKs6kjQmAbo43jEdb22isLotnD8XCPj5rZZsoinuBQfUWFZXTHftjdaXGR5MacwZQZdpzpwCtriGF9WZ9SsxC9sot7a2xtKMU",
+            "xpub68rWg4A8BpFd5aqCWnhcABzTnfRWSBbCB7hovuc1HRPYSg8sLSVfDGpjQqk2rdyQwYPtw46ay8bzqNLF5GDUpYGEeqkBmoExiqSViVPmaSY"
+        ),
+        TestVector(
+            "m/1000'/60'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9wzFYWHzddGewMeorS1xGfhqTs1TLfX4qZdYJrptezxYgGH3giRQzGnqXT6jpWZExdMT91o9wQLTXY3meRe9r2rFsxkXzYMvzDmzsQ6QaUo",
+            "xpub6Aybx1ptTzpx9qjGxTYxdoea1tqwk8EvCnZ97FEWDLVXZ4cCEFjfY57KNjGkwjsz6pKLd8M4H7Gzy74v1EKrFuP9Mi2Wfr1DFwdWxhQ8wXK"
+        ),
+        TestVector(
+            "m/1000'/60'/0'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9yemBFqGA3yNjVSDCzLBCFNb6Z8JN3b3pt8Mq6dQGDtgQiHHNfr4LSyKqa1o1VpmMLiQ6xiDVVC7rdWGwb2aVijiU6nkHp51ZRwLF8WN5RK",
+            "xpub6Ce7amN9zRXfwyWgK1sBZPKKeaxnmWJuC73xdV31pZRfHWcRvDAJtFHogsqsF35zEUULtEdMBdYx5eDxNKRexzkKad9qKZz1LQ4rMPCwVDf"
+        ),
+        TestVector(
+            "m/1000'/60'/0'/0",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprvA1HVK3jGEwMBsUNQXaMnZcvbSA65RqLhsJH6H3SzUiCGWGUE4unAd7DqkE79v96hKii4nZCjAyLCB5nr2QSGYHZR86b8tWQFSuoEhfVgjay",
+            "xpub6EGqiZGA5JuV5xSsdbtnvksKzBvZqJ4ZEXCh5Rrc33jFP4oNcT6RAuYKbTdjBq1criMSCa7eu1jyLnN5uXJ2zm3vUit2wpveMq3epPSG1sg"
+        ),
+        TestVector(
+            "m/44'/60'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9woLTiR2TEd4XwEVbifW6neheGyDAp6Cz4rJKayujkRtaEKnUHaop6SwHSK6F2XJRmVizLV1y7q28Rh4eNRfcyLaxYrSRuQwzJBfhre2TeC",
+            "xpub6AngsDwvHcBMkRJxhkCWTvbSCJohaGp4MHmu7yPXJ5xsT2ew1pu4MtmR8ipHbgqA7GBSbP1cL5mBgFj148fvP71BoUq9CgKSDrukELE1N2x"
+        ),
+        TestVector(
+            "m/44'/60'/0'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9yAR5B1VhzoKEBewsGwP5hjSsAw6t8B7H3yyn4EeTwqgCMWKWqQSBtDb7vbpfKzaMjjwLpCEuoJmpVgNn8ebmpzCJxdtuyyeDxUr6WPcPLm",
+            "xpub6C9mUgYPYNMcSfjQyJUPSqgBRCmbHatxeGuaaSeG2HNf59qU4NigjgY4yCkBSEJv49MdsZiTWsJLks95zFHgdanvWyNNKj2ogzebMysJDZr"
+        ),
+        TestVector(
+            "m/44'/60'/0'/0",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprvA1EfRiGuppNDAKbgn2M3XNFR2wKm9TXwyigok4LfSnKTYHtBghTTiBPDC6Ue8QsN1uAqAUjAxnFBsVW88B3p7K2tmoEec4oxbFUheVAmgRH",
+            "xpub6EE1qDoofBvWNog9t3t3tWC9ayAFYvFoLwcQYSkH17rSR6DLEEmiFyhh3M7EjUEueb1nmHLDvVrEbK4rGGREXFAamNnvot2AdT7NHhUiS6R"
+        ),
+        TestVector(
+            "m/44'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9usAGYdEMSgbqwf1wnTbiEG7SnenhfqiYE2EuFoXQjA6fm4vrHQZAu9JU6whjaeLSraaBRhLDaSRVTaKdbeaKuzKh4J5fwvwDYgiWoUo5ob",
+            "xpub68rWg4A8BpEu4RjV3ozc5NCqzpVH78ZZuSwqheD8y4h5YZQ5PpioihTnKNRR6ZhExYyCwEHAuRKXFzS7f7XnzAd6WysipnL6WnszkCr3BWt"
+        ),
+        TestVector(
+            "m/44'/60'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9woLTiR2TEd4XwEVbifW6neheGyDAp6Cz4rJKayujkRtaEKnUHaop6SwHSK6F2XJRmVizLV1y7q28Rh4eNRfcyLaxYrSRuQwzJBfhre2TeC",
+            "xpub6AngsDwvHcBMkRJxhkCWTvbSCJohaGp4MHmu7yPXJ5xsT2ew1pu4MtmR8ipHbgqA7GBSbP1cL5mBgFj148fvP71BoUq9CgKSDrukELE1N2x"
+        ),
+        TestVector(
+            "m/44'/60'/0'",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprv9yAR5B1VhzoKEBewsGwP5hjSsAw6t8B7H3yyn4EeTwqgCMWKWqQSBtDb7vbpfKzaMjjwLpCEuoJmpVgNn8ebmpzCJxdtuyyeDxUr6WPcPLm",
+            "xpub6C9mUgYPYNMcSfjQyJUPSqgBRCmbHatxeGuaaSeG2HNf59qU4NigjgY4yCkBSEJv49MdsZiTWsJLks95zFHgdanvWyNNKj2ogzebMysJDZr"
+        ),
+        TestVector(
+            "m/44'/60'/0'/0",
+            "72c0aae51ca3493f4190d004fac29497d31758038f9190ec8d140f95c93dcb578ead9bc0fff34f60dfc6d6c3101610a9fc6e93a4fdc6b1fedcbd9bb356c4683b",
+            "xprvA1EfRiGuppNDAKbgn2M3XNFR2wKm9TXwyigok4LfSnKTYHtBghTTiBPDC6Ue8QsN1uAqAUjAxnFBsVW88B3p7K2tmoEec4oxbFUheVAmgRH",
+            "xpub6EE1qDoofBvWNog9t3t3tWC9ayAFYvFoLwcQYSkH17rSR6DLEEmiFyhh3M7EjUEueb1nmHLDvVrEbK4rGGREXFAamNnvot2AdT7NHhUiS6R"
+        ),
+        TestVector(
+            "m",
             "000102030405060708090a0b0c0d0e0f",
             "xprv9s21ZrQH143K3QTDL4LXw2F7HEK3wJUD2nW2nRk4stbPy6cq3jPPqjiChkVvvNKmPGJxWUtg6LnF5kejMRNNU3TGtRBeJgk33yuGBxrMPHi",
             "xpub661MyMwAqRbcFtXgS5sYJABqqG9YLmC4Q1Rdap9gSE8NqtwybGhePY2gZ29ESFjqJoCu1Rupje8YtGqsefD265TMg7usUDFdp6W1EGMcet8"
@@ -100,7 +172,7 @@ class BIP44Test {
 
     @Test
     fun shouldDeriveCorrectPrivateKeys() {
-        for (vector in testVectors.copyOfRange(1,2)) {
+        for (vector in testVectors) {
             println("Path " + vector.path)
             println("Seed " + vector.seedHex)
 

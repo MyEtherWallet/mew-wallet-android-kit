@@ -87,7 +87,8 @@ class PrivateKey private constructor(
         val rawKey = BigInteger(1, rawPrivateKey)
         val calculatedKey = ((factor + rawKey) % curveOrder)
 
-        derivedPrivateKeyData = calculatedKey.toByteArrayWithoutLeadingZeroByte()
+        derivedPrivateKeyData = calculatedKey.toByteArrayWithoutLeadingZeroByte().padLeft(32)
+
         derivedChainCode = digest.copyOfRange(32, 64)
 
         val fingerprint = publicKeyData.ripemd160().prefix(4)
