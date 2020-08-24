@@ -28,11 +28,13 @@ fun String.hexToByteArray(): ByteArray {
 }
 
 fun String.hexToBigInteger(): BigInteger {
-    val source = this.removeHexPrefix()
+    val source = this.removePrefix("-").removeHexPrefix()
     if (source == "" || source == "0") {
         return BigInteger.ZERO
     }
-    return BigInteger(source, 16)
+    return BigInteger(source, 16).let {
+        if (this.startsWith("-")) it.negate() else it
+    }
 }
 
 fun String.isHex(checkPrefix: Boolean = false): Boolean {

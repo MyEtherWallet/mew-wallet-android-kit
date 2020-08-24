@@ -27,9 +27,9 @@ internal class RlpTransaction(private val value: Transaction) : Rlp {
         val signature = value.signature
         val checkedChainID = chainID ?: value.chainId
         if (signature != null && !forSignature) {
-            fields.add(RlpBigInteger(signature.v))
-            fields.add(RlpBigInteger(signature.r))
-            fields.add(RlpBigInteger(signature.s))
+            fields.add(RlpBigInteger(signature.v, 1))
+            fields.add(RlpBigInteger(signature.r, 32))
+            fields.add(RlpBigInteger(signature.s, 32))
         } else if (checkedChainID != null) {
             fields.add(RlpBigInteger(checkedChainID))
             fields.add(RlpInt(0))

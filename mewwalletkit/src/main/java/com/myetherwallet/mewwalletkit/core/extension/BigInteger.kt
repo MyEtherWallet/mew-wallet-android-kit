@@ -17,6 +17,8 @@ fun BigInteger.toByteArrayWithoutLeadingZeroByte(): ByteArray {
     return array
 }
 
-fun BigInteger.toHexString() = this.toString(16).addHexPrefix()
+fun BigInteger.toHexString() = this.toByteArray().toHexString().addHexPrefix()
+
+fun BigInteger.toHexStringWithoutStartZeros() = this.toString(16).addHexPrefix()
 
 fun BigInteger.toTokenValue(decimals: Int = 18): BigDecimal = BigDecimal(this).divide(BigDecimal.TEN.pow(decimals))

@@ -1,5 +1,6 @@
 package com.myetherwallet.mewwalletkit.core.data.rlp
 
+import com.myetherwallet.mewwalletkit.core.extension.padLeft
 import com.myetherwallet.mewwalletkit.core.extension.toByteArrayWithoutLeadingZeroByte
 import java.math.BigInteger
 
@@ -9,6 +10,11 @@ import java.math.BigInteger
 
 internal class RlpBigInteger(private val value: BigInteger) : Rlp, RlpLength {
 
+    constructor(value: BigInteger, length: Int) : this(value) {
+        dataLength = length
+    }
+
+    var dataLength: Int? = null
     private val rlpLengthMax = BigInteger.valueOf(1) shl 256
 
     override fun rlpEncode(offset: Byte?): ByteArray? {
@@ -27,7 +33,11 @@ internal class RlpBigInteger(private val value: BigInteger) : Rlp, RlpLength {
         if (value >= rlpLengthMax) {
             return null
         }
-        return BigInteger.valueOf((value.toByteArrayWithoutLeadingZeroByte().size + offset + 55).toLong()).toByteArray() + value.toByteArrayWithoutLeadingZeroByte()
+        if (dataLength == null) {
+            dataLength = value.toByteArrayWithoutLeadingZeroByte().size
+        }
+        return BigInteger.valueOf((dataLength!! + offset + 55).toLong()).toByteArray() +
+                value.toByteArrayWithoutLeadingZeroByte().padLeft(dataLength!!)
     }
 
     override fun toString(): String {

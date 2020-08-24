@@ -1,5 +1,6 @@
 package com.myetherwallet.mewwalletkit.core.extension
 
+import android.util.Log
 import com.myetherwallet.mewwalletkit.core.util.BitReader
 import org.bitcoin.NativeSecp256k1
 import org.spongycastle.crypto.digests.RIPEMD160Digest
@@ -35,12 +36,23 @@ fun ByteArray.prefix(count: Int) = this.copyOfRange(0, count)
 fun ByteArray.padLeft(length: Int, byte: Byte = 0x00): ByteArray {
     return if (length > this.size) {
         val data = ByteArray(length - this.size)
-        data.fill(0x00)
+        data.fill(byte)
         data + this
     } else {
         this
     }
 }
+
+fun ByteArray.padRight(length: Int, byte: Byte = 0x00): ByteArray {
+    return if (length > this.size) {
+        val data = ByteArray(length - this.size)
+        data.fill(byte)
+        this + data
+    } else {
+        this
+    }
+}
+
 
 fun ByteArray.sha256() = sha("SHA-256")
 
@@ -171,3 +183,5 @@ fun ByteArray.hashPersonalMessage(): ByteArray? {
     val data = prefixData + this
     return data.keccak256()
 }
+
+fun ByteArray?.isNullOrEmpty() = this == null || this.isEmpty()
