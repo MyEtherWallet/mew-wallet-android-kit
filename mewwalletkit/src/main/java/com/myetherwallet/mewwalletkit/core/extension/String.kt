@@ -37,28 +37,28 @@ fun String.hexToBigInteger(): BigInteger {
     }
 }
 
-fun String.isHex(checkPrefix: Boolean = false): Boolean {
-    if (!checkPrefix || this.startsWith("0x")) {
-        for (char in this.removeHexPrefix().toUpperCase(Locale.US).toCharArray()) {
-            if (char != '0' &&
-                char != '1' &&
-                char != '2' &&
-                char != '3' &&
-                char != '4' &&
-                char != '5' &&
-                char != '6' &&
-                char != '7' &&
-                char != '8' &&
-                char != '9' &&
-                char != 'A' &&
-                char != 'B' &&
-                char != 'C' &&
-                char != 'D' &&
-                char != 'E' &&
-                char != 'F'
-            ) {
-                return false
-            }
+fun String.isHex(checkPrefix: Boolean = false) = (!checkPrefix || this.startsWith(PREFIX)) && this.removeHexPrefix().isAllCharsHex()
+
+private fun String.isAllCharsHex(): Boolean {
+    for (char in this.toUpperCase(Locale.US).toCharArray()) {
+        if (char != '0' &&
+            char != '1' &&
+            char != '2' &&
+            char != '3' &&
+            char != '4' &&
+            char != '5' &&
+            char != '6' &&
+            char != '7' &&
+            char != '8' &&
+            char != '9' &&
+            char != 'A' &&
+            char != 'B' &&
+            char != 'C' &&
+            char != 'D' &&
+            char != 'E' &&
+            char != 'F'
+        ) {
+            return false
         }
     }
     return true

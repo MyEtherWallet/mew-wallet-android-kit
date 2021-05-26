@@ -44,6 +44,7 @@ sealed class Network(val title: String, val path: String, val chainId: BigIntege
     object AKROMA : Network("Akroma", "m/44'/200625'/0'/0", 200625)
     object IOLITE : Network("Iolite", "m/44'/1171337'/0'/0", 1171337)
     object ETHER1 : Network("Ether-1", "m/44'/1313114'/0'/0", 1313114)
+    object GOERLI : Network("Goerli", "m/44'/60'/0'/0", 5)
     class CUSTOM(title: String, path: String, chainId: Int) : Network(title, path, chainId)
 
     object ANONYMIZED_ID : Network("Ethereum", "m/1000'/60'/0'/0", 1)

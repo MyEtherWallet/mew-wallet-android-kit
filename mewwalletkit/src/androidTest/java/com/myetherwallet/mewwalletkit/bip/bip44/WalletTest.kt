@@ -15,13 +15,14 @@ class WalletTest {
             val (biP39Generated, walletGenerated) = Wallet.generate()
             Assert.assertNotNull(biP39Generated.mnemonic)
             Assert.assertTrue(biP39Generated.mnemonic!!.isNotEmpty())
-            val mnemonic = biP39Generated.mnemonic!!.joinToString(" ")
-            val (biP39Restored, walletRestored) = Wallet.restore(biP39Generated.mnemonic!!.toList())
-            Assert.assertNotNull("mnemonic=$mnemonic", biP39Restored)
-            Assert.assertNotNull("mnemonic=$mnemonic", walletRestored)
+            val mnemonicList = biP39Generated.mnemonic!!
+            val mnemonicString = mnemonicList.joinToString(" ")
+            val (biP39Restored, walletRestored) = Wallet.restore(mnemonicList)
+            Assert.assertNotNull("mnemonic=$mnemonicString", biP39Restored)
+            Assert.assertNotNull("mnemonic=$mnemonicString", walletRestored)
             for (index in 0 until 10) {
                 val derived = walletRestored.derive(Network.ANONYMIZED_ID.path, index)
-                Assert.assertNotNull("index=$index, mnemonic=${mnemonic}", derived.privateKey.address())
+                Assert.assertNotNull("index=$index, mnemonic=${mnemonicString}", derived.privateKey.address())
             }
         }
     }
