@@ -22,7 +22,8 @@ class Transaction(
     var data: ByteArray = ByteArray(0),
     var from: Address? = null,
     var signature: TransactionSignature? = null,
-    var chainId: BigInteger? = null
+    var chainId: BigInteger? = null,
+    var currency: TransactionCurrency? = null
 ) : Parcelable {
 
     constructor(

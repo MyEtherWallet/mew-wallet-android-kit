@@ -1,6 +1,5 @@
 package com.myetherwallet.mewwalletkit.core.extension
 
-import android.util.Log
 import com.myetherwallet.mewwalletkit.core.util.BitReader
 import org.bitcoin.NativeSecp256k1
 import org.spongycastle.crypto.digests.RIPEMD160Digest
@@ -157,6 +156,10 @@ fun ByteArray.secp256k1ParseSignature(): ByteArray? {
     return NativeSecp256k1.parseEcdsaRecoverableSignatureCompact(serialized, v)
 }
 
+fun ByteArray.parsePublicKey(): ByteArray {
+    return NativeSecp256k1.parsePublicKey(this)
+}
+
 fun ByteArray.secp256k1RecoverPublicKey(hash: ByteArray, compressed: Boolean): ByteArray? {
     if (this.size != 65 || hash.size != 32) {
         return null
@@ -176,7 +179,7 @@ fun ByteArray.secureCompare(rhs: ByteArray): Boolean {
     return difference == 0x00.toByte()
 }
 
-fun ByteArray.hashPersonalMessage(): ByteArray? {
+fun ByteArray.hashPersonalMessage(): ByteArray {
     var prefix = "\u0019Ethereum Signed Message:\n"
     prefix += this.size.toString()
     val prefixData = prefix.toByteArray()

@@ -425,6 +425,37 @@ object NativeSecp256k1 {
         }
     }
 
+    fun parsePublicKey(pubkey: ByteArray): ByteArray {
+        if (pubkey.size > 65) {
+            throw IllegalArgumentException()
+        }
+
+        var byteBuff = nativeECDSABuffer.get()
+        if (byteBuff == null || byteBuff.capacity() <  pubkey.size) {
+            byteBuff = ByteBuffer.allocateDirect( pubkey.size)
+            byteBuff!!.order(ByteOrder.nativeOrder())
+            nativeECDSABuffer.set(byteBuff)
+        }
+        byteBuff.rewind()
+        byteBuff.put(pubkey)
+
+        val retByteArray: Array<ByteArray>
+        r.lock()
+        try {
+            retByteArray = secp256k1_ec_pubkey_parse(byteBuff, Secp256k1Context.context, pubkey.size)
+        } finally {
+            r.unlock()
+        }
+
+        val resArr = retByteArray[0]
+        val retVal = BigInteger(byteArrayOf(retByteArray[1][0])).toInt()
+
+        assertEquals(resArr.size, 32, "Got bad result length.")
+        assertEquals(retVal, 1, "Failed return value check.")
+
+        return resArr
+    }
+
     fun createRecoverableEcdsaSignature(data: ByteArray, privateKey: ByteArray, extraEntropy: ByteArray?): ByteArray {
         if (data.size != 32 || privateKey.size != 32) {
             throw IllegalArgumentException()
