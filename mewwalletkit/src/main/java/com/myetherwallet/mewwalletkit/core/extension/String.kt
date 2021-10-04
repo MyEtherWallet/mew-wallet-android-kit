@@ -1,5 +1,6 @@
 package com.myetherwallet.mewwalletkit.core.extension
 
+import java.math.BigDecimal
 import java.math.BigInteger
 import java.util.*
 
@@ -26,6 +27,8 @@ fun String.hexToByteArray(): ByteArray {
         throw IllegalStateException("Wrong string length")
     }
 }
+
+fun String.toBigIntegerExponential() = BigDecimal(this).toBigInteger()
 
 fun String.hexToBigInteger(): BigInteger {
     val source = this.removePrefix("-").removeHexPrefix()

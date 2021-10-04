@@ -5,9 +5,9 @@ import com.myetherwallet.mewwalletkit.bip.bip44.Network
 import com.myetherwallet.mewwalletkit.bip.bip44.PrivateKey
 import com.myetherwallet.mewwalletkit.bip.bip44.PublicKey
 import com.myetherwallet.mewwalletkit.core.data.rlp.RlpTransaction
+import com.myetherwallet.mewwalletkit.core.extension.addHexPrefix
 import com.myetherwallet.mewwalletkit.core.extension.hexToByteArray
 import com.myetherwallet.mewwalletkit.core.extension.sign
-import com.myetherwallet.mewwalletkit.core.extension.addHexPrefix
 import com.myetherwallet.mewwalletkit.core.extension.toHexString
 import org.junit.Assert
 import org.junit.Test
@@ -367,6 +367,29 @@ class EIP155Test {
         Assert.assertEquals(transaction.signature?.r?.toByteArray()?.toHexString(), "1fff9fa845437523b0a7f334b7d2a0ab14364a3581f898cd1bba3b5909465867")
         Assert.assertEquals(transaction.signature?.s?.toByteArray()?.toHexString(), "1415137f53eeddf0687e966f8d59984676d6d92ce88140765ed343db6936679e")
         Assert.assertEquals(transaction.signature?.v?.toByteArray()?.toHexString(), "45")
+    }
+
+    @Test
+    fun shouldSignTransactionAndReturnTheExpectedSignature2() {
+        val transaction = Transaction(
+            "0x00", "0x106", "0x33450",
+            Address("0x5c5220918B616E583515A7F42b6bE0c967664462"), "0xc8", ByteArray(0)
+        )
+        transaction.chainId = BigInteger.ONE
+//            Assert.assertEquals(transaction.serialize()?.toHexString(), "e08082010683033450945c5220918b616e583515a7f42b6be0c96766446281c880")
+
+        val privateKey = PrivateKey.createWithPrivateKey("009312d3c3a8ac6d00fb2df851e1cb0023becc00cc7a0083b0ae70f4bd0575ae".hexToByteArray(), Network.ETHEREUM)
+        transaction.sign(privateKey)
+
+        Assert.assertNotNull(transaction.signature)
+        Assert.assertEquals(transaction.signature?.r?.toHexString(), "0xd87153e2fb484f21469785f5b6ab95cc5c3aba5a80487428b63024068633bda2")
+        Assert.assertEquals(transaction.signature?.s?.toHexString(), "0x2421eb4be1a11ff6071881608f660047604a7f63883326588b4168a3491800")
+        Assert.assertEquals(transaction.signature?.v?.toHexString(), "0x25")
+//        Assert.assertEquals(
+//            transaction.serialize()?.toHexString(),
+//            "f8628082010683033450945c5220918b616e583515a7f42b6be0c96766446281c88025a0d87153e2fb484f21469785f5b6ab95cc5c3aba5a80487428b63024068633bda29f2421eb4be1a11ff6071881608f660047604a7f63883326588b4168a3491800"
+//        )
+        Assert.assertEquals(transaction.hash()?.toHexString(), "a048f58d4da25b8d91c2691cd3527074ef4ac52f520cb63c40b1fe50a2abf906")
     }
 
     class TestVector(
