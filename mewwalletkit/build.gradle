@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.github.gnosis.bivrost-kotlin:bivrost-abi-parser:v0.6.2'
     implementation 'com.github.gnosis.svalinn-kotlin:blockies:v0.5.4'
 
-    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.google.code.gson:gson:2.8.8'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'

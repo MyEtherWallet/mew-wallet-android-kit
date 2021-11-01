@@ -20,6 +20,7 @@ class WalletTest {
             val (biP39Restored, walletRestored) = Wallet.restore(mnemonicList)
             Assert.assertNotNull("mnemonic=$mnemonicString", biP39Restored)
             Assert.assertNotNull("mnemonic=$mnemonicString", walletRestored)
+            Assert.assertEquals("Generated and restored address are not equals", walletGenerated.privateKey.address()?.address, walletRestored.privateKey.address()?.address)
             for (index in 0 until 10) {
                 val derived = walletRestored.derive(Network.ANONYMIZED_ID.path, index)
                 Assert.assertNotNull("index=$index, mnemonic=${mnemonicString}", derived.privateKey.address())
