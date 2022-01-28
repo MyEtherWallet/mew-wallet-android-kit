@@ -17,11 +17,14 @@ import com.myetherwallet.mewwalletkit.eip.eip155.exception.InvalidSignatureExcep
 fun Transaction.encode() = RlpTransaction(this).rlpEncode()
 
 fun Transaction.sign(key: PrivateKey, extraEntropy: Boolean = false) {
-    val chainID = this.chainId ?: throw InvalidChainIdException()
+    if (this.chainId == null) {
+        this.chainId = key.network.chainId
+    }
+    val chainId = this.chainId ?: throw InvalidChainIdException()
     val publicKeyData = key.publicKey()?.data() ?: throw InvalidPublicKeyException()
     val signature = this.eip155sign(key, extraEntropy)
     val serializedSignature = signature.first ?: throw InvalidSignatureException()
-    val transactionSignature = TransactionSignature(serializedSignature, chainID)
+    val transactionSignature = TransactionSignature(serializedSignature, chainId)
     val recoveredPublicKey = transactionSignature.recoverPublicKey(this) ?: throw InvalidSignatureException()
     if (!publicKeyData.secureCompare(recoveredPublicKey)) {
         throw InvalidPublicKeyException()
@@ -39,7 +42,7 @@ fun Transaction.eip155sign(privateKey: PrivateKey, extraEntropy: Boolean = false
     }
     this.signature = null
     val publicKey = privateKey.publicKey(true)?.data() ?: throw InvalidPublicKeyException()
-    val hash = this.hash() ?: throw InternalErrorException()
+    val hash = this.hash(this.chainId, true) ?: throw InternalErrorException()
     for (i in 0 until 1024) {
         val signature = hash.secp256k1RecoverableSign(privateKeyData, extraEntropy) ?: continue
         val recoveredPublicKey = signature.secp256k1RecoverPublicKey(hash, true) ?: continue

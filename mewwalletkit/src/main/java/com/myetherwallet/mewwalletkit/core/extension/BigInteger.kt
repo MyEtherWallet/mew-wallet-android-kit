@@ -1,5 +1,6 @@
 package com.myetherwallet.mewwalletkit.core.extension
 
+import com.myetherwallet.mewwalletkit.core.data.rlp.RlpBigInteger
 import java.math.BigDecimal
 import java.math.BigInteger
 
@@ -19,6 +20,10 @@ fun BigInteger.toByteArrayWithoutLeadingZeroByte(): ByteArray {
 
 fun BigInteger.toHexString() = this.toByteArray().toHexString().addHexPrefix()
 
+fun BigInteger.toHexStringWithoutLeadingZeroByte() = this.toByteArrayWithoutLeadingZeroByte().toHexString().addHexPrefix()
+
 fun BigInteger.toHexStringWithoutStartZeros() = this.toString(16).addHexPrefix()
 
 fun BigInteger.toTokenValue(decimals: Int = 18): BigDecimal = BigDecimal(this).divide(BigDecimal.TEN.pow(decimals))
+
+internal fun BigInteger.toRlp() = RlpBigInteger(this)

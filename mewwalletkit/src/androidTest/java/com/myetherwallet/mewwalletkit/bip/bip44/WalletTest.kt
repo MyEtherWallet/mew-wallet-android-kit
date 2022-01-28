@@ -11,7 +11,7 @@ class WalletTest {
 
     @Test
     fun generateRestoreDerive() {
-        for (i in 0 until 5000) {
+        for (i in 0 until 10) {
             val (biP39Generated, walletGenerated) = Wallet.generate()
             Assert.assertNotNull(biP39Generated.mnemonic)
             Assert.assertTrue(biP39Generated.mnemonic!!.isNotEmpty())

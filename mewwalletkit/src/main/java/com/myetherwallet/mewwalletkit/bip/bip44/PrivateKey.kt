@@ -20,7 +20,7 @@ class PrivateKey private constructor(
     private val depth: Byte,
     private val fingerprint: ByteArray,
     private val index: Int,
-    private val network: Network
+    internal val network: Network
 ) : Key {
 
     companion object {

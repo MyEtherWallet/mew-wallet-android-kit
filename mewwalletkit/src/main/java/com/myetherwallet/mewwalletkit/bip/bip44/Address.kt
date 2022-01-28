@@ -4,7 +4,7 @@ import android.os.Parcelable
 import com.myetherwallet.mewwalletkit.core.extension.eip55
 import com.myetherwallet.mewwalletkit.core.extension.isHex
 import com.myetherwallet.mewwalletkit.core.extension.toHexString
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 /**
@@ -51,7 +51,7 @@ class Address constructor(val address: String) : Parcelable {
 
         other as Address
 
-        if (address.toLowerCase(Locale.US) != other.address.toLowerCase(Locale.US)) return false
+        if (address.lowercase(Locale.US) != other.address.lowercase(Locale.US)) return false
 
         return true
     }

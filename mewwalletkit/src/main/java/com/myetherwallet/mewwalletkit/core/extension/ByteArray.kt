@@ -28,7 +28,7 @@ fun ByteArray.toBits(range: IntRange): Int? {
 
 fun ByteArray.toHexString() = joinToString("") { "%02x".format(it) }
 
-fun ByteArray.toBigInteger(): BigInteger = if (this.isEmpty()) BigInteger.ZERO else BigInteger(this)
+fun ByteArray.toBigInteger(): BigInteger = if (this.isEmpty()) BigInteger.ZERO else BigInteger(1, this)
 
 fun ByteArray.prefix(count: Int) = this.copyOfRange(0, count)
 
