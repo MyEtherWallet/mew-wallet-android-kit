@@ -1,10 +1,11 @@
 package com.myetherwallet.mewwalletkit.eip.eip155
 
 import android.os.Parcelable
+import com.myetherwallet.mewwalletkit.core.data.rlp.RlpBigInteger
 import com.myetherwallet.mewwalletkit.core.extension.*
 import com.myetherwallet.mewwalletkit.eip.eip155.exception.InvalidSignatureException
-import kotlinx.android.parcel.IgnoredOnParcel
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.IgnoredOnParcel
+import kotlinx.parcelize.Parcelize
 import java.math.BigInteger
 
 /**
@@ -16,14 +17,21 @@ class TransactionSignature(
     internal var rBytes: ByteArray,
     internal var sBytes: ByteArray,
     internal var v: BigInteger,
-    private var chainID: BigInteger = BigInteger.ZERO
+    private var chainId: BigInteger = BigInteger.ZERO
 ) : Parcelable {
 
-    @IgnoredOnParcel
-    internal val r: BigInteger by lazy { rBytes.toBigInteger() }
+    internal lateinit var signatureYParity: RlpBigInteger
+        private set
 
     @IgnoredOnParcel
-    internal val s: BigInteger by lazy { sBytes.toBigInteger() }
+    internal val r: BigInteger by lazy {
+        rBytes.toBigInteger()
+    }
+
+    @IgnoredOnParcel
+    internal val s: BigInteger by lazy {
+        sBytes.toBigInteger()
+    }
 
     val inferredChainID: BigInteger?
         get() = if (r == BigInteger.ZERO && s == BigInteger.ZERO) {
@@ -43,6 +51,7 @@ class TransactionSignature(
         if (signature.size != 65) {
             throw InvalidSignatureException()
         }
+        signatureYParity = BigInteger(byteArrayOf(signature[64])).toRlp()
     }
 
     constructor(r: String, s: String, v: String, chainID: BigInteger = BigInteger.ZERO) : this(
@@ -58,7 +67,7 @@ class TransactionSignature(
         }
         val inferredChainID = this.inferredChainID
         val normalizedV = when {
-            this.chainID != BigInteger.ZERO -> this.v - BigInteger.valueOf(35) - BigInteger.valueOf(2) * this.chainID
+            this.chainId != BigInteger.ZERO -> this.v - BigInteger.valueOf(35) - BigInteger.valueOf(2) * this.chainId
             inferredChainID != null -> this.v - BigInteger.valueOf(35) - BigInteger.valueOf(2) * inferredChainID
             else -> this.v - BigInteger.valueOf(27)
         }
@@ -72,8 +81,8 @@ class TransactionSignature(
         }
         val signature = rByteArray + sByteArray + vByteArray
         val hash = transaction.hash(inferredChainID, true) ?: return null
-        return signature.secp256k1RecoverPublicKey(hash, false) ?: return null
+        return signature.secp256k1RecoverPublicKey(hash, false)
     }
 
-    override fun toString() = "TransactionSignature(r=${r.toHexString()}, s=${s.toHexString()}, v=${v.toHexString()}, chainID=$chainID)"
+    override fun toString() = "TransactionSignature(r=${r.toHexStringWithoutLeadingZeroByte()}, s=${s.toHexStringWithoutLeadingZeroByte()}, v=${v.toHexStringWithoutLeadingZeroByte()}, chainID=$chainId)"
 }

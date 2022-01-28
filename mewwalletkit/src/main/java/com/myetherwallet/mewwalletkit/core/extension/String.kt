@@ -43,7 +43,7 @@ fun String.hexToBigInteger(): BigInteger {
 fun String.isHex(checkPrefix: Boolean = false) = (!checkPrefix || this.startsWith(PREFIX)) && this.removeHexPrefix().isAllCharsHex()
 
 private fun String.isAllCharsHex(): Boolean {
-    for (char in this.toUpperCase(Locale.US).toCharArray()) {
+    for (char in this.uppercase(Locale.US).toCharArray()) {
         if (char != '0' &&
             char != '1' &&
             char != '2' &&
@@ -80,7 +80,7 @@ fun String.addHexPrefix(): String {
 
 fun String.eip55(): String? {
     val hasHexPrefix = this.hasHexPrefix()
-    val address = this.toLowerCase(Locale.US).removeHexPrefix()
+    val address = this.lowercase(Locale.US).removeHexPrefix()
     val hash = address.toByteArray().keccak256().toHexString()
 
     var eip55 = address
@@ -89,9 +89,9 @@ fun String.eip55(): String? {
             if (addressChar == '0' || addressChar == '1' || addressChar == '2' || addressChar == '3' || addressChar == '4' || addressChar == '5' || addressChar == '6' || addressChar == '7' || addressChar == '8' || addressChar == '9') {
                 addressChar.toString()
             } else if (hashChar == '8' || hashChar == '9' || hashChar == 'a' || hashChar == 'b' || hashChar == 'c' || hashChar == 'd' || hashChar == 'e' || hashChar == 'f') {
-                addressChar.toString().toUpperCase(Locale.US)
+                addressChar.toString().uppercase(Locale.US)
             } else {
-                addressChar.toString().toLowerCase(Locale.US)
+                addressChar.toString().lowercase(Locale.US)
             }
         }
         .joinToString("")

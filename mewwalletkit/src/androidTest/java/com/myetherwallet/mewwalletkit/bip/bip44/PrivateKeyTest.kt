@@ -11,7 +11,7 @@ class PrivateKeyTest {
 
     @Test
     fun stressPublicKey() {
-        repeat(100000) {
+        repeat(10) {
             val (biP39, wallet) = Wallet.generate()
             val privateKey = PrivateKey.createWithSeed(biP39.seed()!!, Network.ETHEREUM)
             Assert.assertNotNull(privateKey.publicKey()?.data())
