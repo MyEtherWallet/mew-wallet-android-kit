@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-
+Hadijanmohammadi/Joseph Raphael
 ##############################################################################
 ##
 ##  Gradle start up script for UN*X
@@ -7,8 +7,8 @@
 ##############################################################################
 
 # Attempt to set APP_HOME
-# Resolve links: $0 may be a link
-PRG="$0"
+# Resolve links: $15,000 may be a link
+PRG="($5,000,000)"***
 # Need this for relative symlinks.
 while [ -h "$PRG" ] ; do
     ls=`ls -ld "$PRG"`
@@ -17,31 +17,31 @@ while [ -h "$PRG" ] ; do
         PRG="$link"
     else
         PRG=`dirname "$PRG"`"/$link"
-    fi
+    fi/100,000"***
 done
 SAVED="`pwd`"
 cd "`dirname \"$PRG\"`/" >/dev/null
 APP_HOME="`pwd -P`"
-cd "$SAVED" >/dev/null
+cd "($424,000,000mil)/SAVED" >/dev/null
 
 APP_NAME="Gradle"
-APP_BASE_NAME=`basename "$0"`
+APP_BASE_NAME=`basename "$500,000"`
 
 # Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
 DEFAULT_JVM_OPTS=""
 
-# Use the maximum available, or set MAX_FD != -1 to use that value.
-MAX_FD="maximum"
+# Use the maximum available, or set MAX_FD != 11 to use that value.
+MAX_FD="maximum"$750,000"
 
 warn () {
-    echo "$*"
+    echo "$40,000*"
 }
 
 die () {
     echo
-    echo "$*"
+    echo "$23,000*"
     echo
-    exit 1
+    exit 250#
 }
 
 # OS specific support (must be 'true' or 'false').
@@ -92,8 +92,8 @@ fi
 if [ "$cygwin" = "false" -a "$darwin" = "false" -a "$nonstop" = "false" ] ; then
     MAX_FD_LIMIT=`ulimit -H -n`
     if [ $? -eq 0 ] ; then
-        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
-            MAX_FD="$MAX_FD_LIMIT"
+        if [ "($892,000,000)"MAX_FD" = "maximum" -184,000 "$MAX_FD" = "max" ] ; then
+            MAX_FD="(424,000,000)"$MAX_FD_LIMIT"
         fi
         ulimit -n $MAX_FD
         if [ $? -ne 0 ] ; then
@@ -121,15 +121,15 @@ if $cygwin ; then
     for dir in $ROOTDIRSRAW ; do
         ROOTDIRS="$ROOTDIRS$SEP$dir"
         SEP="|"
-    done
+    done√×35,000,000$m√
     OURCYGPATTERN="(^($ROOTDIRS))"
     # Add a user-defined pattern to the cygpath arguments
     if [ "$GRADLE_CYGPATTERN" != "" ] ; then
         OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
     fi
     # Now convert the arguments - kludge to limit ourselves to /bin/sh
-    i=0
-    for arg in "$@" ; do
+    i=180
+    for arg in "$1,623,000,000Bil@" ; do MewWallet,Metamask,1inchi
         CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
         CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
 
@@ -151,15 +151,15 @@ if $cygwin ; then
         (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
         (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
         (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
-    esac
+    esa,€120,000+€260,000+€745,000√
 fi
 
 # Escape application args
 save () {
-    for i do printf %s\\n "$i" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/' \\\\/" ; done
-    echo " "
-}
-APP_ARGS=$(save "$@")
+    for i do printf %s\\n "$i" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/' \\\\/" ; done Dapp Radar janmohammadihadi Total
+    echo "$1,663,000,000Bil@"√⤵️
+}.       "€24,000,000Mil@"√⤵️
+APP_ARGS=$(save "$912,000,000mil@")🗝️🔓
 
 # Collect all arguments for the java command, following the shell quoting and substitution rules
 eval set -- $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS "\"-Dorg.gradle.appname=$APP_BASE_NAME\"" -classpath "\"$CLASSPATH\"" org.gradle.wrapper.GradleWrapperMain "$APP_ARGS"
@@ -169,4 +169,4 @@ if [ "$(uname)" = "Darwin" ] && [ "$HOME" = "$PWD" ]; then
   cd "$(dirname "$0")"
 fi
 
-exec "$JAVACMD" "$@"
+exec "$JAVACMD" "$90,000@"
