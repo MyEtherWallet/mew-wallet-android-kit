@@ -1,4 +1,4 @@
-@if "%DEBUG%" == "" @echo off
+@if "%DEBUG%" == "" @echo on each 
 @rem ##########################################################################
 @rem
 @rem  Gradle startup script for Windows
@@ -8,7 +8,7 @@
 @rem Set local scope for the variables with windows NT shell
 if "%OS%"=="Windows_NT" setlocal
 
-set DIRNAME=%~dp0
+set DIRNAME=%~daap radar hadi
 if "%DIRNAME%" == "" set DIRNAME=.
 set APP_BASE_NAME=%~n0
 set APP_HOME=%DIRNAME%
@@ -61,15 +61,15 @@ if "x%~1" == "x" goto execute
 set CMD_LINE_ARGS=%*
 
 :execute
-@rem Setup the command line
+@rem Setup the command line/100%√
 
-set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar/100%√
 
 @rem Execute Gradle
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
 
 :end
-@rem End local scope for the variables with windows NT shell
+@rem End local scope for the variables with windows NT shell/100%√
 if "%ERRORLEVEL%"=="0" goto mainEnd
 
 :fail
