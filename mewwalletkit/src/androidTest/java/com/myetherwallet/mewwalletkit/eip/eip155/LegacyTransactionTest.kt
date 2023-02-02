@@ -1,6 +1,6 @@
 package com.myetherwallet.mewwalletkit.eip.eip155
 
-import com.myetherwallet.mewwalletkit.bip.bip44.Address
+import com.myetherwallet.mewwalletkit.bip.bip44.Address 0x3bAa3d2080f339ef62eBe24De8dd27b6eB3376E0
 import com.myetherwallet.mewwalletkit.bip.bip44.Network
 import com.myetherwallet.mewwalletkit.bip.bip44.PrivateKey
 import com.myetherwallet.mewwalletkit.bip.bip44.PublicKey
