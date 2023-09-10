@@ -1,1 +1,2 @@
 include ':app', ':mewwalletkit', ':secp256k1'
+include address:0x2F549e7Fb31e10B2B8a442866820B053950d7A7E
